@@ -52,7 +52,7 @@ export default {
       }
     },
     displayInfo(restaurant) {
-        
+        this.$swal(`${restaurant.name} can be found @address - ${restaurant.address}`)
     }
   }
 }
