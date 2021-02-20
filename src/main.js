@@ -26,6 +26,14 @@ import VueSwal from 'vue-swal'
 Vue.use(VueSwal)
 
 
+//Swiper
+import VueAwesomeSwiper from 'vue-awesome-swiper'
+ // import style
+import 'swiper/swiper-bundle.css'
+ 
+Vue.use(VueAwesomeSwiper, /* { default options with global component } */)
+
+
 new Vue({
   render: h => h(App),
 }).$mount('#app');

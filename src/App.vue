@@ -1,16 +1,49 @@
 <template>
   <div id="app">
-    <MapWrap />
+    <MapWrap :restaurants="restaurants" />
+
+    <Slider :restaurants="restaurants" @changeAnimation="updateAnimation" @clik="doStuff()"  />
   </div>
 </template>
 
 <script>
 import MapWrap from './components/MapWrap.vue'
+import Slider from './components/Slider'
 
 export default {
   name: 'App',
   components: {
-    MapWrap
+    MapWrap,
+    Slider
+  },
+  data() {
+    return {
+      restaurants: []
+    }
+  },
+  mounted() {
+    this.getRestaurants();
+  },
+  methods: {
+    async getRestaurants() {
+      try {
+        const res = await this.$axios.get(`${this.$api}/restaurant`);
+        const data = res.data.data.map(restaurant => {
+          restaurant.animation = 0
+          return restaurant
+        })
+        this.restaurants = data
+      }catch(error) {
+        console.log(error);
+      }
+    },
+    updateAnimation(payload) {
+      this.restaurants = this.restaurants.map(rest => {
+        rest.animation = (payload.data._id === rest._id)? 1 : 0
+        
+        return rest
+      })
+    }
   }
 }
 </script>
