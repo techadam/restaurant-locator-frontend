@@ -1,30 +1,34 @@
 <template>
-  <div class="map-wrapper">
-    <GmapMap
-      :center="{lat:10, lng:10}"
-      :zoom="7"
-      map-type-id="terrain"
-      style="width: 80vw; height: 80vh"
-    >
-        <GmapMarker
-            :key="index"
-            v-for="(m, index) in restaurants"
-            :position="{lat: Number(m.lat), lng: Number(m.log)}"
-            :clickable="true"
-            :draggable="false"
-            @click="displayInfo(m)"
-        >
-            <GmapInfoWindow
-                @closeclick="window_open=false" 
-                :opened="window_open" 
-                :position="infowindow"
+    <div>
+        <h3>Find Your Favorite Restaurants</h3>
+
+        <div class="map-wrapper">
+            <GmapMap
+            :center="{lat:10, lng:10}"
+            :zoom="7"
+            map-type-id="terrain"
+            style="width: 95vw; height: 90vh"
             >
-                <p>{{m.name}}</p>
-                <p>{{m.address}}</p>
-            </GmapInfoWindow>
-        </GmapMarker>
-    </GmapMap>
-  </div>
+                <GmapMarker
+                    :key="index"
+                    v-for="(m, index) in restaurants"
+                    :position="{lat: Number(m.lat), lng: Number(m.log)}"
+                    :clickable="true"
+                    :draggable="false"
+                    @click="displayInfo(m)"
+                >
+                    <GmapInfoWindow
+                        @closeclick="window_open=false" 
+                        :opened="window_open" 
+                        :position="infowindow"
+                    >
+                        <p>{{m.name}}</p>
+                        <p>{{m.address}}</p>
+                    </GmapInfoWindow>
+                </GmapMarker>
+            </GmapMap>
+        </div>
+    </div>
 </template>
 
 <script>
@@ -48,7 +52,7 @@ export default {
       }
     },
     displayInfo(restaurant) {
-        console.log(restaurant)
+        
     }
   }
 }

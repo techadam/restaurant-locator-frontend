@@ -2,6 +2,9 @@ import Vue from 'vue';
 import App from './App.vue';
 import axios from 'axios';
 
+//CSS
+import '@/assets/css/style.css'
+
 Vue.config.productionTip = false;
 
 //Global vars
@@ -17,6 +20,11 @@ Vue.use(VueGoogleMaps, {
     libraries: 'places',
   },
 });
+
+//Sweet alert
+import VueSwal from 'vue-swal'
+Vue.use(VueSwal)
+
 
 new Vue({
   render: h => h(App),

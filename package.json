@@ -11,6 +11,7 @@
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
     "vue": "^2.6.11",
+    "vue-swal": "^1.0.0",
     "vue2-google-maps": "^0.10.7"
   },
   "devDependencies": {
