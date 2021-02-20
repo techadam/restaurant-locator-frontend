@@ -1,17 +1,11 @@
 <template>
-  <div class="hello">
+  <div class="map-wrapper">
     <GmapMap
       :center="{lat:10, lng:10}"
       :zoom="7"
       map-type-id="terrain"
-      style="width: 100vw; height: 100vh"
+      style="width: 80vw; height: 80vh"
     >
-        <GmapMarker
-            :position="{lat: 11.9965, lng: 9.8375}"
-            :clickable="true"
-            :draggable="true"
-        />
-
         <GmapMarker
             :key="index"
             v-for="(m, index) in restaurants"
@@ -19,7 +13,16 @@
             :clickable="true"
             :draggable="false"
             @click="displayInfo(m)"
-        />
+        >
+            <GmapInfoWindow
+                @closeclick="window_open=false" 
+                :opened="window_open" 
+                :position="infowindow"
+            >
+                <p>{{m.name}}</p>
+                <p>{{m.address}}</p>
+            </GmapInfoWindow>
+        </GmapMarker>
     </GmapMap>
   </div>
 </template>
