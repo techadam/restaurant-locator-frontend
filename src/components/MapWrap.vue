@@ -1,7 +1,6 @@
 <template>
     <div>
         <h3>Find Your Favorite Restaurants</h3>
-
         <div class="map-wrapper">
             <GmapMap
             ref="mapRef"
@@ -24,6 +23,10 @@
                     :draggable="false"
                     :animation="m.animation"
                     @click="displayInfo(m)"
+                    :icon="{
+                        url: markerYellow,
+                        size: {width: 100, height: 100, f: 'px', b: 'px'},
+                    }"
                     class="bounce"
                 >
                     <!--<GmapInfoWindow
@@ -46,7 +49,9 @@ export default {
   props: ['restaurants'],
   data() {
       return {
-          position: {lat: 10, lng: 10}
+          position: {lat: 10, lng: 10},
+          markerYellow: require('@/assets/img/marker-yellow.png'),
+          markerRed: require('@/assets/img/marker-red.png'),
       }
   },
   mounted() {
