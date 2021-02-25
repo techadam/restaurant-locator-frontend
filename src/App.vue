@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <MapWrap :restaurants="restaurants" />
+    <MapWrap :restaurants="restaurants" :center="center" />
 
     <Slider :restaurants="restaurants" @changeAnimation="updateAnimation" @clik="doStuff()"  />
   </div>
@@ -18,7 +18,8 @@ export default {
   },
   data() {
     return {
-      restaurants: []
+      restaurants: [],
+      center: null,
     }
   },
   mounted() {

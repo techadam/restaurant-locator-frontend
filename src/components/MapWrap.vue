@@ -1,6 +1,7 @@
 <template>
     <div>
         <h3>Find Your Favorite Restaurants</h3>
+        {{center}}
         <div class="map-wrapper">
             <GmapMap
             ref="mapRef"
@@ -46,7 +47,7 @@
 <script>
 export default {
   name: 'Mapwrap',
-  props: ['restaurants'],
+  props: ['restaurants', 'center'],
   data() {
       return {
           position: {lat: 10, lng: 10},
@@ -73,6 +74,11 @@ export default {
   },
   computed: {
     userPos() {
+        const isCentered = this.restaurants.find(rest => rest.animation > 0)
+        if(isCentered) {
+            return {lat: Number(isCentered.lat), lng: Number(isCentered.log)}
+        }
+
         return this.position
     }
   }
