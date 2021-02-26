@@ -3,7 +3,8 @@
         <div class="slider-wrapper">
             <swiper ref="mySwiper" :options="swiperOptions">
                 <swiper-slide v-for="(rest, index) in restaurants" :key="index">
-                    <div class="slider-flex" @click="showInfo(rest)" @mouseover="showInfoMarker(m, index)" @mouseleave="$store.commit('updateMarkerInfo', -1)">
+                    <!-- <div class="slider-flex" @click="showInfo(rest)"> -->
+                    <div class="slider-flex" @mouseover="showInfoMarker(m, index)" @mouseleave="$store.commit('updateMarkerInfo', -1)">
                         <div class="rest-img-card" :style="`background-image: url('https://images.pexels.com/photos/1581384/pexels-photo-1581384.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940`">
                             <ion-icon name="heart-outline"></ion-icon>
                         </div>
