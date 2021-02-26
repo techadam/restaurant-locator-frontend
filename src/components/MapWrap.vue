@@ -6,7 +6,7 @@
                 ref="mapRef"
                 :center="(markerInfo >= 0)? {lat: Number(restaurants[markerInfo].lat), lng: Number(restaurants[markerInfo].log)} : userPos"
                 :zoom="12"
-                map-type-id="terrain"
+                map-type-id="roadmap"
                 style="width: 100vw; height: 100vh"
                 :options="{
                     mapTypeControl: false,

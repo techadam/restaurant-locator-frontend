@@ -4,7 +4,7 @@
             <swiper ref="mySwiper" :options="swiperOptions">
                 <swiper-slide v-for="(rest, index) in restaurants" :key="index">
                     <!-- <div class="slider-flex" @click="showInfo(rest)"> -->
-                    <div class="slider-flex" @mouseover="showInfoMarker(m, index)" @mouseleave="$store.commit('updateMarkerInfo', -1)">
+                    <div class="slider-flex" @mouseover="showInfoMarker(rest, index)" @mouseleave="$store.commit('updateMarkerInfo', -1)">
                         <div class="rest-img-card" :style="`background-image: url('https://images.pexels.com/photos/1581384/pexels-photo-1581384.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940`">
                             <ion-icon name="heart-outline"></ion-icon>
                         </div>
@@ -113,7 +113,7 @@ export default {
             this.$emit('changeAnimation', {data: restaurant})
         },
         showInfoMarker(restaurant, index) {
-            this.restaurant = [restaurant]
+            //this.restaurant = [restaurant]
             this.$emit('changeAnimation', {data: restaurant})
             this.$store.commit('updateMarkerInfo', index)
         },

@@ -4,7 +4,7 @@
 
     <MapWrap :restaurants="restaurants" :center="center" />
 
-    <Slider :restaurants="restaurants" @changeAnimation="updateAnimation" @clik="doStuff()"  />
+    <Slider :restaurants="restaurants" @changeAnimation="updateAnimation"  />
   </div>
 </template>
 
@@ -43,6 +43,7 @@ export default {
       }
     },
     updateAnimation(payload) {
+      console.log(payload)
       this.restaurants = this.restaurants.map(rest => {
         rest.animation = (payload.data._id === rest._id)? 1 : 0
         
