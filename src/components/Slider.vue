@@ -3,12 +3,18 @@
         <div class="slider-wrapper">
             <swiper ref="mySwiper" :options="swiperOptions">
                 <swiper-slide v-for="(rest, index) in restaurants" :key="index">
-                    <div class="slider-flex" @click="showInfo(rest)">
-                        <img src="https://via.placeholder.com/140x100" class="" width="100%" alt="">
-                        <div class="restaurant-info">
+                    <div class="slider-flex" @click="showInfo(rest)" @mouseover="showInfoMarker(m, index)" @mouseleave="$store.commit('updateMarkerInfo', -1)">
+                        <div class="rest-img-card" :style="`background-image: url('https://images.pexels.com/photos/1581384/pexels-photo-1581384.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940`">
+                            <ion-icon name="heart-outline"></ion-icon>
+                        </div>
+                        <div class="rest-info-card">
                             <h4>{{rest.name}}</h4>
-                            <p>{{rest.address}}</p>
-                            <p class=""><b>{{getDistanceBetweenTwoPoints({lat: rest.lat, lon: rest.log}, position)}}</b> km</p>
+                            <span class="text-muted rest-address-card">
+                                {{rest.address}}
+                            </span>
+                            <div class="divider"></div>
+                            <p class="rest-desc-card">Cuscous, shish Kebab, baklawa, falaffef</p>
+                            <p class="rest-star-card"><ion-icon name="star"></ion-icon> 4.7</p>
                         </div>
                     </div>
                 </swiper-slide>
@@ -104,6 +110,11 @@ export default {
         showInfo(restaurant) {
             this.restaurant = [restaurant]
             this.$emit('changeAnimation', {data: restaurant})
+        },
+        showInfoMarker(restaurant, index) {
+            this.restaurant = [restaurant]
+            this.$emit('changeAnimation', {data: restaurant})
+            this.$store.commit('updateMarkerInfo', index)
         },
     }
 }

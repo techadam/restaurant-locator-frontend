@@ -1,0 +1,232 @@
+$primary-color: #770400;
+$secondary-color: #f6b000;
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    text-decoration: none;
+    font-family: Poppins;
+}
+
+body {
+    position: relative;
+}
+
+.wrapper {
+    width: 87%;
+    margin: auto;
+    padding: 1rem;
+}
+
+.main-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.35);
+    z-index: 1000;
+
+    .wrapper {
+        margin: 1rem auto;
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            label {
+                ion-icon {
+                    font-size: 2rem;
+                }
+            }
+
+            ul {
+                display: flex;
+                align-items: center;
+
+                li {
+                    margin: 0rem 1.5rem;
+
+                    &:last-child {
+                        margin-right: 0rem;
+                    }
+
+                    .link-icon {
+                        ion-icon {
+                            font-size: 1.8rem;
+                        }
+                    }
+
+                    .link-text {
+                        font-weight: 500;
+                    }
+
+                    .link-btn {
+                        padding: .7rem 1.2rem;
+                        background: $primary-color;
+                        color: #fff;
+                        border-radius: 30px;
+                        font-size: .95rem;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.map-wrapper {
+    border-radius: 8px;
+    overflow-x: hidden;
+    margin: auto;
+}
+
+h3 {
+    font-size: 1.8rem !important;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.slider-wrapper {
+    position: fixed;
+    height: 220px;
+    width: 100%;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background: transparent;
+    padding: 1rem;
+    padding-bottom: 16rem;
+}
+
+.p2 {
+    padding: 1rem;
+}
+
+.swiper-container {
+    width: 100%;
+    min-height: 230px;
+}
+
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    border: 1px solid rgb(229, 233, 242);
+    border-radius: 4px;
+    position: relative;
+    overflow-y: hidden;
+    min-height: 200px;
+}
+
+.swiper-slide.swiper-slide-active {
+    border: 1px solid #efefef;
+}
+
+.slider-flex {
+    display: grid;
+    grid-template-columns: 130px auto;
+    grid-gap: 1rem;
+    cursor: pointer;
+    position: relative;
+}
+
+.slider-flex {
+    .rest-img-card {
+        margin-top: 1rem;
+        margin-left: 1rem;
+        border-radius: 4px;
+        height: 150px;
+        background-size: cover;
+        background-repeat: no-repeat;
+        position: relative;
+
+        ion-icon {
+            position: absolute;
+            z-index: 1000;
+            color: #fff;
+            top: 10px;
+            right: 10px;
+            font-size: 1.6rem;
+        }
+    }
+
+    .rest-info-card {
+        text-align: left;
+        padding: 1rem !important;
+        overflow-x: hidden;
+
+        h4 {
+            margin-bottom: 0rem !important;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .rest-address-card {
+            color: #777;
+            display: inline-block;
+            text-transform: lowercase;
+            font-size: .93rem;
+            padding: .6rem 0rem;
+            border-bottom: 1px solid #888;
+            margin-bottom: 1rem;
+            width: 100%;
+        }
+
+        .rest-desc-card {
+            font-size: .95rem;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            color: #333;
+            text-transform: lowercase !important;
+        }
+
+        .rest-star-card {
+            ion-icon {
+                color: $secondary-color;
+            }
+        }
+    }
+}
+
+.info-modal {
+    background: #fff;
+    height: 100%;
+    width: 400px;
+    position: absolute;
+    left: -400px;
+    top: 0;
+    bottom: 0;
+    z-index: 10000;
+    transition: left 500ms;
+}
+
+.info-modal .close {
+    text-align: right;
+    margin-bottom: 1rem;
+}
+
+.info-modal .close button {
+    outline: none;
+    background: transparent;
+    border: none;
+    font-size: 2rem;
+    color: tomato;
+    cursor: pointer;
+}
+
+.info-modal.active {
+    left: 0rem;
+}
+
+.bounce {
+    display: none;
+}
+
+.highlight {
+    color: tomato !important;
+}

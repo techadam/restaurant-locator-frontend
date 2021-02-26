@@ -1,5 +1,7 @@
 <template>
   <div id="app">
+    <Header />
+
     <MapWrap :restaurants="restaurants" :center="center" />
 
     <Slider :restaurants="restaurants" @changeAnimation="updateAnimation" @clik="doStuff()"  />
@@ -9,10 +11,12 @@
 <script>
 import MapWrap from './components/MapWrap.vue'
 import Slider from './components/Slider'
+import Header from './components/Header'
 
 export default {
   name: 'App',
   components: {
+    Header,
     MapWrap,
     Slider
   },
@@ -51,7 +55,6 @@ export default {
 
 <style>
 #app {
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

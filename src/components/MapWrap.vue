@@ -1,21 +1,27 @@
 <template>
     <div>
-        <h3>Find Your Favorite Restaurants</h3>
-        {{center}}
+        
         <div class="map-wrapper">
             <GmapMap
-            ref="mapRef"
-            :center="userPos"
-            :zoom="7"
-            map-type-id="terrain"
-            style="width: 95vw; height: 90vh"
+                ref="mapRef"
+                :center="(markerInfo >= 0)? {lat: Number(restaurants[markerInfo].lat), lng: Number(restaurants[markerInfo].log)} : userPos"
+                :zoom="12"
+                map-type-id="terrain"
+                style="width: 100vw; height: 100vh"
+                :options="{
+                    mapTypeControl: false,
+                    fullscreenControl: false,
+                }"
             >
-                <GmapCircle v-if="position"
-                    :center="position"
-                    :radius="100000"
-                    :visible="true"
-                    :options="{fillColor:'blue',fillOpacity:0.5}"
-                ></GmapCircle>
+                <GmapMarker
+                    v-if="position"
+                    :position="position"
+                    :icon="{
+                        url: markerYellow,
+                        size: {width: 100, height: 100, f: 'px', b: 'px'},
+                    }"
+                    class="bounce"
+                ></GmapMarker>
                 <GmapMarker
                     :key="index"
                     v-for="(m, index) in restaurants"
@@ -25,19 +31,22 @@
                     :animation="m.animation"
                     @click="displayInfo(m)"
                     :icon="{
-                        url: markerYellow,
+                        url: markerRed,
                         size: {width: 100, height: 100, f: 'px', b: 'px'},
                     }"
                     class="bounce"
                 >
-                    <!--<GmapInfoWindow
+                    <GmapInfoWindow
                         @closeclick="window_open=false" 
                         :opened="window_open" 
-                        :position="infowindow"
+                        :position="{lat: Number(m.lat), lng: Number(m.log)}"
+                        v-if="markerInfo === index"
                     >
-                        <p>{{m.name}}</p>
-                        <p>{{m.address}}</p>
-                    </GmapInfoWindow>-->
+                        <div class="info-window-card">
+                            <h4>{{m.name}}</h4>
+                            <p>{{m.address}}</p>
+                        </div>
+                    </GmapInfoWindow>
                 </GmapMarker>
             </GmapMap>
         </div>
@@ -45,6 +54,8 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
   name: 'Mapwrap',
   props: ['restaurants', 'center'],
@@ -80,7 +91,10 @@ export default {
         }
 
         return this.position
-    }
+    },
+    ...mapState([
+        'markerInfo'
+    ])
   }
 }
 </script>
