@@ -75,7 +75,7 @@ export default {
             dist = dist * 60 * 1.1515;
             dist = dist * 1.609344; //convert miles to km
 
-            console.log(cord1, cord2)
+            //console.log(cord1, cord2)
 
             return dist / 1000;
         }

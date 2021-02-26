@@ -22,6 +22,9 @@ Vue.use(VueGoogleMaps, {
   },
 });
 
+//ion icon setup
+Vue.config.ignoredElements = [/^ion-/]
+
 //Sweet alert
 import VueSwal from 'vue-swal'
 Vue.use(VueSwal)

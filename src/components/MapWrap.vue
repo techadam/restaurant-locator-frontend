@@ -62,6 +62,7 @@ export default {
   data() {
       return {
           position: {lat: 10, lng: 10},
+          window_open: true,
           markerYellow: require('@/assets/img/marker-yellow.png'),
           markerRed: require('@/assets/img/marker-red.png'),
       }

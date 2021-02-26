@@ -43,7 +43,6 @@ export default {
       }
     },
     updateAnimation(payload) {
-      console.log(payload)
       this.restaurants = this.restaurants.map(rest => {
         rest.animation = (payload.data._id === rest._id)? 1 : 0
         
