@@ -13,6 +13,13 @@
                     fullscreenControl: false,
                 }"
             >
+                <GmapCircle v-if="position"
+                    :center="position"
+                    :radius="5000"
+                    :visible="true"
+                    :options="{fillColor:'#2E9DFF',fillOpacity:0.5,strokeColor:'#0087FF',strokeWeight:1}"
+                >
+                </GmapCircle>
                 <GmapMarker
                     v-if="position"
                     :position="position"
