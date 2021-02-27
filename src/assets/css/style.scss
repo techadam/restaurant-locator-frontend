@@ -41,10 +41,6 @@ body {
                     font-size: 2rem;
                     cursor: pointer;
                 }
-
-                &.menu-toggle-sm {
-                    display: none;
-                }
             }
 
             ul {
@@ -118,6 +114,7 @@ body {
             right: 0;
             bottom: 0;
             top: 0;
+            cursor: pointer;
         }
 
         .mobile-menu-inner {
@@ -144,7 +141,7 @@ body {
                     ion-icon {
                         font-size: 1.2rem;
                         margin-right: .5rem;
-                        color: #888;
+                        color: #999;
                     }
 
                     .link-item {
@@ -171,8 +168,10 @@ body {
                     }
                 }
 
+                
                 &.main {
-
+                    /*padding-bottom: 1.5rem;
+                    border-bottom: 1px solid #999 !important;*/
                 }
             }
         }
@@ -337,15 +336,5 @@ h3 {
 @media only screen and (max-width: 768px) {
     .hide-sm {
         display: none;
-    }
-
-    label {
-        &.menu-toggle-sm  {
-            display: inline-block !important;
-        }
-
-        &.menu-toggle {
-            display: none;
-        }
     }
 }

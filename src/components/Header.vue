@@ -48,10 +48,6 @@
                         <ion-icon name="menu"></ion-icon>
                     </label>
 
-                    <label for="" class="menu-toggle">
-                        <ion-icon name="menu"></ion-icon>
-                    </label>
-
                     <div>
                         <ul>
                             <li>

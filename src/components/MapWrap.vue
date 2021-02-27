@@ -68,6 +68,7 @@ export default {
   props: ['restaurants', 'center'],
   data() {
       return {
+          map: null,
           position: {lat: 10, lng: 10},
           window_open: true,
           markerYellow: require('@/assets/img/marker-yellow.png'),
@@ -75,7 +76,7 @@ export default {
       }
   },
   mounted() {
-    //this.position = {lat: 10.8876, lng: 11.9876}
+    this.$refs.mapRef.$mapPromise.then(map => this.map = map)
     this.getCoord()
   },
   methods: {
@@ -90,6 +91,11 @@ export default {
     displayInfo(restaurant) {
         this.$swal(`${restaurant.name} can be found @address - ${restaurant.address}`)
     },
+    toPos() {
+        this.map.setZoom(2)
+        this.map.panTo(this.position)
+        this.map.setZoom(12)
+    }
   },
   computed: {
     userPos() {
