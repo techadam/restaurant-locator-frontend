@@ -1,10 +1,9 @@
 <template>
     <div>
         <div class="slider-wrapper">
-            <swiper ref="mySwiper" :options="swiperOptions">
-                <swiper-slide v-for="(rest, index) in restaurants" :key="index">
-                    <!-- <div class="slider-flex" @click="showInfo(rest)"> -->
-                    <div class="slider-flex" @mouseover="showInfoMarker(rest, index)">
+            <flickity ref="flickity" :options="flickityOptions">
+                <div class="carousel-cell" v-for="(rest, index) in restaurants" :key="index">
+                    <div class="carousel-flex" @mouseover="showInfoMarker(rest, index)">
                         <div class="rest-img-card" :style="`background-image: url('https://images.pexels.com/photos/1581384/pexels-photo-1581384.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940`">
                             <ion-icon name="heart-outline"></ion-icon>
                         </div>
@@ -21,52 +20,31 @@
                             </div>
                         </div>
                     </div>
-                </swiper-slide>
-                
-            </swiper>
+                </div>
+            </flickity>
         </div>
-
-        <InfoModal :restaurant="restaurant" />
     </div>
 </template>
 
 <script>
-import InfoModal from './InfoModal'
+import Flickity from 'vue-flickity'
 
 export default {
 
-    name: 'Slider',
+    name: 'CardSlider',
     props: ['restaurants'],
     components: {
-        InfoModal,
+        Flickity
     },
     data() {
         return {
             restaurant: [],
             position: {},
-            swiperOptions: {
-                lazy: true,
-                slidesPerView: 1,
-                spaceBetween: 10,
-                centeredSlides: false,
-                navigation: {
-                    nextEl: '.swiper-button-next',
-                    prevEl: '.swiper-button-prev',
-                },
-                breakpoints: {
-                    768: {
-                        slidesPerView: 1,
-                        spaceBetween: 20,
-                    },
-                    960: {
-                        slidesPerView: 2,
-                        spaceBetween: 30,
-                    },
-                    1280: {
-                        slidesPerView: 3,
-                        spaceBetween: 30,
-                    },
-                }
+            flickityOptions: {
+                initialIndex: 3,
+                prevNextButtons: false,
+                pageDots: false,
+                wrapAround: true
             }
         }
     },
@@ -107,28 +85,21 @@ export default {
 
             return (dist).toFixed(0);
         },
-        showInfo(restaurant) {
-            /*this.restaurant = [restaurant]
-            this.$emit('changeAnimation', {data: restaurant})*/
-
-            const { lat, log } = restaurant
-            const cord2 = {latitude: Number(lat), longitude: Number(log)}
-            const cord1 = {latitude: this.position.lat, longitude: this.position.lon}
-            console.log(cord2, cord1)
-
-            this.$axios.post(`${this.$api}/restaurant/get-distance`, {cord1, cord2})
-            .then(res => {
-                console.log(res.data)
-            })
-            .catch(error => {
-                console.log(error)
-            })
-        },
         showInfoMarker(restaurant, index) {
             //this.restaurant = [restaurant]
             this.$emit('changeAnimation', {data: restaurant})
             this.$store.commit('updateMarkerInfo', index)
         },
-    }
+    },
+    watch: {
+        // whenever question changes, this function will run
+        restaurants: function (newRests, oldRests) {
+            if(this.restaurants.length > 0 && oldRests.length < 1) {
+                this.$nextTick(function () { // the magic
+                    this.$refs.flickity.rerender()
+                })
+            }
+        }
+    },
 }
 </script>

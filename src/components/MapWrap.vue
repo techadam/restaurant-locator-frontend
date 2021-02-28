@@ -62,7 +62,6 @@
 
 <script>
 import { mapState } from 'vuex'
-import Distance from 'geo-distance/lib/geo-distance.js'
 
 export default {
   name: 'Mapwrap',
@@ -93,16 +92,6 @@ export default {
         this.$swal(`${restaurant.name} can be found @address - ${restaurant.address}`)
     },
     toPos() {
-        var Oslo = {
-            lat: 59.914,
-            lon: 10.752
-        };
-        var Berlin = {
-            lat: 52.523,
-            lon: 13.412
-        };
-        let OsloToBerlin = Distance.between(Oslo, Berlin);
-        console.log(OsloToBerlin)
         this.map.setZoom(2)
         this.map.panTo(this.position)
         this.map.setZoom(12)

@@ -3,14 +3,17 @@
     <Header />
 
     <MapWrap :restaurants="restaurants" :center="center" />
-
-    <Slider :restaurants="restaurants" @changeAnimation="updateAnimation"  />
+    
+    <CardSlider :restaurants="restaurants" @changeAnimation="updateAnimation"  />
+    
+    <!--<Slider :restaurants="restaurants" @changeAnimation="updateAnimation"  />-->
   </div>
 </template>
 
 <script>
 import MapWrap from './components/MapWrap.vue'
-import Slider from './components/Slider'
+//import Slider from './components/Slider'
+import CardSlider from './components/CardSlider'
 import Header from './components/Header'
 
 export default {
@@ -18,7 +21,8 @@ export default {
   components: {
     Header,
     MapWrap,
-    Slider
+    CardSlider,
+    //Slider
   },
   data() {
     return {
