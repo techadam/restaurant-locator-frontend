@@ -27,7 +27,6 @@
                     :position="position"
                     :icon="{
                         url: markerYellow,
-                        size: {width: 100, height: 100, f: 'px', b: 'px'},
                     }"
                     class="bounce"
                 ></GmapMarker>
@@ -41,7 +40,6 @@
                     @click="displayInfo(m)"
                     :icon="{
                         url: markerRed,
-                        size: {width: 100, height: 100, f: 'px', b: 'px'},
                     }"
                     class="bounce"
                 >
