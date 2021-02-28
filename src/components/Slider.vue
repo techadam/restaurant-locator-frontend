@@ -4,7 +4,7 @@
             <swiper ref="mySwiper" :options="swiperOptions">
                 <swiper-slide v-for="(rest, index) in restaurants" :key="index">
                     <!-- <div class="slider-flex" @click="showInfo(rest)"> -->
-                    <div class="slider-flex" @mouseover="showInfoMarker(rest, index)" @click="showInfo(rest)">
+                    <div class="slider-flex" @mouseover="showInfoMarker(rest, index)">
                         <div class="rest-img-card" :style="`background-image: url('https://images.pexels.com/photos/1581384/pexels-photo-1581384.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940`">
                             <ion-icon name="heart-outline"></ion-icon>
                         </div>
@@ -16,6 +16,7 @@
                             <div class="divider"></div>
                             <p class="rest-desc-card">Cuscous, shish Kebab, baklawa, falaffef</p>
                             <p class="rest-star-card"><ion-icon name="star"></ion-icon> 4.7</p>
+                            <p><b>Distance: </b> {{getDistance(position, {lat: rest.lat, lon: rest.log})}}km</p>
                         </div>
                     </div>
                 </swiper-slide>
@@ -51,20 +52,16 @@ export default {
                     prevEl: '.swiper-button-prev',
                 },
                 breakpoints: {
-                    640: {
-                        slidesPerView: 2,
+                    768: {
+                        slidesPerView: 1,
                         spaceBetween: 20,
                     },
-                    768: {
-                        slidesPerView: 2,
-                        spaceBetween: 30,
-                    },
                     960: {
-                        slidesPerView: 3,
+                        slidesPerView: 2,
                         spaceBetween: 30,
                     },
                     1280: {
-                        slidesPerView: 4,
+                        slidesPerView: 3,
                         spaceBetween: 30,
                     },
                 }
@@ -82,7 +79,7 @@ export default {
                 console.log(error)
             })
         },
-        getDistanceBetweenTwoPoints(cord1, cord2) {
+        getDistance(cord1, cord2) {
             if (cord1.lat == cord2.lat && cord1.lon == cord2.lon) {
                 return 0;
             }
@@ -106,7 +103,7 @@ export default {
             dist = dist * 60 * 1.1515;
             dist = dist * 1.609344; //convert miles to km
 
-            return (dist / 1000).toFixed(4);
+            return (dist).toFixed(0);
         },
         showInfo(restaurant) {
             /*this.restaurant = [restaurant]
@@ -115,6 +112,7 @@ export default {
             const { lat, log } = restaurant
             const cord2 = {latitude: Number(lat), longitude: Number(log)}
             const cord1 = {latitude: this.position.lat, longitude: this.position.lon}
+            console.log(cord2, cord1)
 
             this.$axios.post(`${this.$api}/restaurant/get-distance`, {cord1, cord2})
             .then(res => {
