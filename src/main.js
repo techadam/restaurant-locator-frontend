@@ -37,8 +37,11 @@ import 'swiper/swiper-bundle.css'
  
 Vue.use(VueAwesomeSwiper, /* { default options with global component } */)
 
+//router
+import router from './router'
 
 new Vue({
+  router,
   store,
   render: h => h(App),
 }).$mount('#app');

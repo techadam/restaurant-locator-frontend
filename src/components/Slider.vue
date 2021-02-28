@@ -4,7 +4,7 @@
             <swiper ref="mySwiper" :options="swiperOptions">
                 <swiper-slide v-for="(rest, index) in restaurants" :key="index">
                     <!-- <div class="slider-flex" @click="showInfo(rest)"> -->
-                    <div class="slider-flex" @mouseover="showInfoMarker(rest, index)">
+                    <div class="slider-flex" @mouseover="showInfoMarker(rest, index)" @click="showInfo(rest)">
                         <div class="rest-img-card" :style="`background-image: url('https://images.pexels.com/photos/1581384/pexels-photo-1581384.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940`">
                             <ion-icon name="heart-outline"></ion-icon>
                         </div>
@@ -109,8 +109,20 @@ export default {
             return (dist / 1000).toFixed(4);
         },
         showInfo(restaurant) {
-            this.restaurant = [restaurant]
-            this.$emit('changeAnimation', {data: restaurant})
+            /*this.restaurant = [restaurant]
+            this.$emit('changeAnimation', {data: restaurant})*/
+
+            const { lat, log } = restaurant
+            const cord2 = {latitude: Number(lat), longitude: Number(log)}
+            const cord1 = {latitude: this.position.lat, longitude: this.position.lon}
+
+            this.$axios.post(`${this.$api}/restaurant/get-distance`, {cord1, cord2})
+            .then(res => {
+                console.log(res.data)
+            })
+            .catch(error => {
+                console.log(error)
+            })
         },
         showInfoMarker(restaurant, index) {
             //this.restaurant = [restaurant]
