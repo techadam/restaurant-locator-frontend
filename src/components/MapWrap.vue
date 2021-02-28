@@ -2,7 +2,6 @@
     <div>
         
         <div class="map-wrapper">
-            <button type="button" @click="toPos()">Test map</button>
             <GmapMap
                 ref="mapRef"
                 :center="(markerInfo >= 0)? {lat: Number(restaurants[markerInfo].lat), lng: Number(restaurants[markerInfo].log)} : userPos"
