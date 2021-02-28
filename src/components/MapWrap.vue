@@ -2,10 +2,12 @@
     <div>
         
         <div class="map-wrapper">
+            <!--<button type="button" @click="toPos()">Test map</button>-->
             <GmapMap
                 ref="mapRef"
                 :center="(markerInfo >= 0)? {lat: Number(restaurants[markerInfo].lat), lng: Number(restaurants[markerInfo].log)} : userPos"
                 :zoom="12"
+                @zoom_changed="getCoord()"
                 map-type-id="roadmap"
                 style="width: 100vw; height: 100vh"
                 :options="{
@@ -84,7 +86,7 @@ export default {
     getCoord() {
         navigator.geolocation.getCurrentPosition(position => {
             this.position = {lat: position.coords.latitude, lng: position.coords.longitude}
-            console.log(this.position)
+            //console.log(this.position)
         }, error => {
             console.log(error)
         })
