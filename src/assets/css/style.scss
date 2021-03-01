@@ -347,7 +347,7 @@ h3 {
 
     .rest-info-card {
         text-align: left;
-        padding: 1rem !important;
+        padding: 0rem 1rem 1rem 1rem !important;
         overflow-x: hidden;
 
         h4 {
@@ -414,7 +414,7 @@ h3 {
     background: transparent;
     border: none;
     font-size: 2rem;
-    color: tomato;
+    color: $secondary-color;
     cursor: pointer;
 }
 
@@ -427,11 +427,15 @@ h3 {
 }
 
 .highlight {
-    color: tomato !important;
+    color: $secondary-color !important;
 }
 
 @media only screen and (max-width: 768px) {
     .hide-sm {
         display: none;
+    }
+
+    .carousel-cell {
+        width: 97%;
     }
 }

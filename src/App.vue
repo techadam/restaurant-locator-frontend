@@ -5,7 +5,7 @@
     <MapWrap :restaurants="restaurants" :center="center" />
     
     <CardSlider :restaurants="restaurants" @changeAnimation="updateAnimation"  />
-    
+
     <!--<Slider :restaurants="restaurants" @changeAnimation="updateAnimation"  />-->
   </div>
 </template>
@@ -32,6 +32,19 @@ export default {
   },
   mounted() {
     this.getRestaurants();
+
+    /*const ua = navigator.userAgent;
+    if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua)) {
+      alert("tablet");
+    }else if (
+      /Mobile|iP(hone|od)|Android|BlackBerry|IEMobile|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(
+        ua
+      )
+    ) {
+      alert("mobile");
+    }else{
+      alert("desktop");
+    }*/
   },
   methods: {
     async getRestaurants() {
