@@ -1,4 +1,4 @@
-$primary-color: #770400;
+$main-color: #770400;
 $secondary-color: #f6b000;
 
 * {
@@ -10,6 +10,15 @@ $secondary-color: #f6b000;
     font-family: Poppins;
 }
 
+.btn {
+    outline: none;
+}
+
+.btn-main {
+    background: $main-color;
+    color: #fff;
+}
+
 body {
     position: relative;
 }
@@ -18,6 +27,63 @@ body {
     width: 87%;
     margin: auto;
     padding: 1rem;
+}
+
+.account-wrapper {
+    min-height: 100vh;
+    background-image: url(../img/login_bg.jpg);
+    color: #333;
+    display: grid;
+    place-items: center;
+
+    .account-form {
+        background-color: #fff;
+        box-shadow: 0 0 37px rgb(8 21 66 / 5%);
+        border-radius: 3px;
+        width: 100%;
+        max-width: 480px;
+        padding: 2rem 2.5rem;
+        margin-top: 1.5rem;
+        margin-bottom: 1.5rem;
+
+        img {
+            margin: auto;
+            display: block;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 1.6rem !important;
+        }
+
+        h3 {
+            font-size: 1.12rem !important;
+            text-align: center;
+            margin-bottom: 1.7rem;
+            color: $main-color;
+        }
+
+        .form-control {
+            background: #efefef;
+            border: 1px solid #ccc;
+            height: 55px;
+            border-radius: 0.75rem;
+        }
+
+        .btn {
+            height: 48px;
+            border-radius: 0.75rem;
+
+            & + small {
+                font-weight: 500;
+                font-size: 1rem;
+
+                a {
+                    color: $main-color;
+                }
+            }
+        }
+    }
 }
 
 .main-header {
@@ -70,7 +136,7 @@ body {
 
                     .link-btn {
                         padding: .7rem 1.2rem;
-                        background: $primary-color;
+                        background: $main-color;
                         color: #fff;
                         border-radius: 30px;
                         font-size: .95rem;
@@ -109,6 +175,11 @@ body {
         height: 100%;
         width: 100%;
         background: rgba(255,255,255,0.7);
+
+        .menu-divider {
+            margin: 2rem 0rem;
+            border: 1px solid #ccc;
+        }
 
         label {
             position: absolute;
@@ -159,27 +230,26 @@ body {
                         padding: 0rem 1rem;
                         font-size: 1rem;
                     }
-
-                    &:first-child {
-                        margin-bottom: 2rem;
-
-                        .link-item {
-                            background: $primary-color;
-                            color: #fff;
-                            padding: .8rem 1rem;
-                            border-radius: 30px;
-
-                            ion-icon {
-                                color: #fff;
-                            }
-                        }
-                    }
                 }
 
                 
                 &.main {
-                    /*padding-bottom: 1.5rem;
-                    border-bottom: 1px solid #999 !important;*/
+                    li {
+                        &:first-child {
+                            margin-bottom: 2rem;
+    
+                            .link-item {
+                                background: $main-color;
+                                color: #fff;
+                                padding: .8rem 1rem;
+                                border-radius: 30px;
+    
+                                ion-icon {
+                                    color: #fff;
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -355,6 +425,8 @@ h3 {
             text-overflow: ellipsis;
             overflow: hidden;
             white-space: nowrap;
+            font-size: 1.02rem;
+            font-weight: 600;
         }
 
         .rest-address-card {
@@ -428,6 +500,14 @@ h3 {
 
 .highlight {
     color: $secondary-color !important;
+}
+
+.info-window-card {
+    padding: .3rem;
+
+    h4 {
+        font-size: 1.1rem !important;
+    }
 }
 
 @media only screen and (max-width: 768px) {

@@ -37,6 +37,18 @@
                             </li>
                         </ul>
                     </div>
+
+                    <div class="menu-divider"></div>
+
+                    <div class="menu-block">
+                        <ul>
+                            <li>
+                                <a @click.prevent="logout()" href="#" class="link-item">
+                                    <ion-icon name="power"></ion-icon> Logout
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
@@ -64,6 +76,9 @@
                                 <router-link to="/" class="link-text">About Us</router-link>
                             </li>
                             <li class="hide-sm">
+                                <a @click.prevent="logout()" href="#" class="link-text">Logout</a>
+                            </li>
+                            <li class="hide-sm">
                                 <router-link to="/" class="link-btn">Partner With Us</router-link>
                             </li>
                         </ul>
@@ -73,3 +88,42 @@
         </header>
     </div>
 </template>
+
+<script>
+
+export default {
+    name: 'Header',
+    methods: {
+        async logout() {
+            //clear localstorage and remove vuex store values
+            localStorage.clear()
+            this.$store.commit('clearToken')
+
+            //log out device
+            try {
+                const res = await this.$axios.delete(`${this.$api}/auth/logout`, {
+                    headers: this.userToken
+                })
+                console.log(res.data)
+                this.$toast.open({
+                    message: 'Logout successful',
+                    type: 'success',
+                })
+
+                this.$router.push('/login')
+            }catch(error) {
+                this.$toast.open({
+                    message: error.response.data.message || 'Problem encountered. Please try again',
+                    type: 'error',
+                })
+            }
+            
+        }
+    },
+    computed: {
+        userToken() {
+            return {authorization: `Bearer ${this.$store.getters.getToken}`}
+        }
+    }
+}
+</script>
