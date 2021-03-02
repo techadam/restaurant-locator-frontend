@@ -122,7 +122,7 @@ export default {
     },
     computed: {
         userToken() {
-            return {authorization: `Bearer ${this.$store.getters.getToken}`}
+            return {authorization: `Bearer ${localStorage.usertoken}`}
         }
     }
 }
