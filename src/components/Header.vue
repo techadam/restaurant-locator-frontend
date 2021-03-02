@@ -95,16 +95,16 @@ export default {
     name: 'Header',
     methods: {
         async logout() {
-            //clear localstorage and remove vuex store values
-            localStorage.clear()
-            this.$store.commit('clearToken')
-
             //log out device
             try {
-                const res = await this.$axios.delete(`${this.$api}/auth/logout`, {
+                await this.$axios.delete(`${this.$api}/auth/logout`, {
                     headers: this.userToken
                 })
-                console.log(res.data)
+                
+                //clear localstorage and remove vuex store values
+                localStorage.clear()
+                this.$store.commit('clearToken')
+
                 this.$toast.open({
                     message: 'Logout successful',
                     type: 'success',
@@ -117,12 +117,11 @@ export default {
                     type: 'error',
                 })
             }
-            
         }
     },
     computed: {
         userToken() {
-            return {authorization: `Bearer ${localStorage.usertoken}`}
+            return {authorization: `Bearer ${this.$store.getters.getToken}`}
         }
     }
 }
