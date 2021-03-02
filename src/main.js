@@ -10,7 +10,7 @@ Vue.config.productionTip = false;
 
 //Global vars
 Vue.prototype.$axios = axios;
-Vue.prototype.$api = `http://192.168.0.147:5000`;
+Vue.prototype.$api = `http://localhost:5000`;
 
 //Google map
 import * as VueGoogleMaps from 'vue2-google-maps';
