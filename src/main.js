@@ -17,13 +17,26 @@ import * as VueGoogleMaps from 'vue2-google-maps';
  
 Vue.use(VueGoogleMaps, {
   load: {
-    key: 'AIzaSyAyWkj870Jb_FFzL32qnaXRhMRI96k0YV4',
+    key: 'YOUR_API_KEY',
     libraries: 'places',
   },
 });
 
 //ion icon setup
 Vue.config.ignoredElements = [/^ion-/]
+
+
+//Socket.io 
+// socket io
+import * as io from "socket.io-client";
+import VueSocketIO from "vue-socket.io";
+
+Vue.use(
+  new VueSocketIO({
+    debug: true,
+    connection: io('http://localhost:5000'), // options object is Optional
+  })
+);
 
 //Sweet alert
 import VueSwal from 'vue-swal'

@@ -4,12 +4,16 @@ import VueRouter from 'vue-router'
 
 //Components
 import MapView from '@/views/MapView'
+import Restaurants from '@/views/Restaurants'
+import NewRestaurant from '@/views/NewRestaurant'
 import Login from '@/views/Login'
 
 Vue.use(VueRouter)
 
 const routes = [
     { path: '/', component: MapView, meta: {requiresAuth: true} },
+    { path: '/restaurants', component: Restaurants },
+    { path: '/new-restaurant', component: NewRestaurant, meta: {requiresAuth: true} },
     { path: '/login', component: Login },
 ];
 

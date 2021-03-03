@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import axios from 'axios'
 
 Vue.use(Vuex)
 
@@ -8,6 +9,7 @@ const store = new Vuex.Store({
         markerInfo: -1,
         usertoken: '',
         user: {},
+        restaurants: []
     },
     getters: {
         getToken(state) {
@@ -24,6 +26,19 @@ const store = new Vuex.Store({
         clearToken: (state) => {
             state.usertoken = ''
         },
+        updateRestaurants: (state, payload) => {
+            state.restaurants = payload
+        }
+    },
+    actions: {
+        getRestaurants: async({commit}) => {
+            try {
+                const res = await axios.get(`http://localhost:5000/restaurant`)
+                commit('updateRestaurants', res.data.data)
+            }catch(error) {
+                console.log(error)
+            }
+        }
     }
 })
 

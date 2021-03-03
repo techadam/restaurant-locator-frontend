@@ -14,7 +14,7 @@
                     </div>
 
                     <div class="menu-block main">
-                        <ul>
+                        <ul v-if="token">
                             <li>
                                 <router-link to="/" class="link-item">
                                     <ion-icon name="hand-right"></ion-icon> Partner With Us
@@ -36,12 +36,35 @@
                                 </router-link>
                             </li>
                         </ul>
+
+                        <ul v-else>
+                            <li>
+                                <router-link to="/login" class="link-item">
+                                    <ion-icon name="hand-right"></ion-icon> Sign in
+                                </router-link>
+                            </li>
+                            <li>
+                                <router-link to="/restaurants" class="link-item">
+                                    <ion-icon name="list-circle"></ion-icon> Retaurants
+                                </router-link>
+                            </li>
+                        </ul>
                     </div>
 
                     <div class="menu-divider"></div>
 
                     <div class="menu-block">
-                        <ul>
+                        <ul v-if="token">
+                            <li>
+                                <router-link to="/new-restaurant" class="link-item">
+                                    <ion-icon name="add-circle"></ion-icon> Add Restaurant
+                                </router-link>
+                            </li>
+                            <li>
+                                <router-link to="/restaurants" class="link-item">
+                                    <ion-icon name="list-circle"></ion-icon> Retaurants
+                                </router-link>
+                            </li>
                             <li>
                                 <a @click.prevent="logout()" href="#" class="link-item">
                                     <ion-icon name="power"></ion-icon> Logout
@@ -61,7 +84,7 @@
                     </label>
 
                     <div>
-                        <ul>
+                        <ul v-if="token">
                             <li>
                                 <router-link to="/" class="link-icon">
                                     <ion-icon name="cart-outline"></ion-icon>
@@ -80,6 +103,15 @@
                             </li>
                             <li class="hide-sm">
                                 <router-link to="/" class="link-btn">Partner With Us</router-link>
+                            </li>
+                        </ul>
+
+                        <ul v-else>
+                            <li class="hide-sm">
+                                <router-link to="/restaurants" class="link-text">Restaurants</router-link>
+                            </li>
+                            <li class="hide-sm">
+                                <router-link to="/login" class="link-btn">Login</router-link>
                             </li>
                         </ul>
                     </div>
@@ -121,7 +153,10 @@ export default {
     },
     computed: {
         userToken() {
-            return {authorization: `Bearer ${this.$store.getters.getToken}`}
+            return {authorization: `Bearer ${localStorage.usertoken}`}
+        },
+        token() {
+            return localStorage.usertoken
         }
     }
 }
