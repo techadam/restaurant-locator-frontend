@@ -58,6 +58,16 @@ export default {
     },
     methods: {
         saveRestaurant() {
+            const { name, lat, log, address } = this.restaurant
+
+            //Verify that fields are not empty
+            if(!name || !lat || !log || !address) {
+                this.$toast.open({
+                    message: 'Fill all form fields and try again',
+                    type: 'error',
+                })
+            }
+
             socket.emit('create-restaurant', this.restaurant, (response) => {
                 if(response.status === true) {
                     this.restaurant = {

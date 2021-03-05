@@ -10,7 +10,21 @@ export default {
   name: 'App',
   data() {
     return {}
-  }
+  },
+  sockets: {
+      updatedRestaurants: function () {
+          this.$toast.open({
+              message: 'New restaurant added to restaurants list',
+              type: 'success',
+          })
+      },
+      editedRestaurant: function (data) {
+          this.$toast.open({
+              message: `Restaurant with name ${data.name} has been updated with new info`,
+              type: 'success',
+          })
+      },
+  },
 }
 </script>
 
