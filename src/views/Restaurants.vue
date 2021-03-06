@@ -64,8 +64,9 @@ export default {
             this.restaurants.unshift(data)
             //console.log('this method was fired by the socket server. eg: io.emit("customEmit", data)', data);
         },
-        editedRestaurant: function() {
-            this.$store.dispatch('getRestaurants')
+        editedRestaurant: function(data) {
+            const index = this.restaurants.findIndex(rest => rest._id === data._id)
+            this.restaurants.splice(index, 1, data)
         }
     },
     mounted() {
