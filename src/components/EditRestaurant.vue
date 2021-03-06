@@ -57,10 +57,10 @@ export default {
 
             try {
                 await this.$axios.post(`${this.$api}/restaurant/edit`, this.restaurant)
-                this.$toast.open({
+                /*this.$toast.open({
                     message: 'Restaurant updated successfully',
                     type: 'success',
-                })
+                })*/
                 this.$emit('closeModal')
             }catch(error) {
                 this.$toast.open({

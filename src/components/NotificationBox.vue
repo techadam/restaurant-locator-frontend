@@ -2,11 +2,13 @@
     <div v-if="notify">
         <div id="notification-box" class="notification-box">
             <div class="notification-wrapper">
-                <button type="button" id="notification-close" @click="closed()" title="close">X</button>
+                <button type="button" id="notification-close" @click="closed()" title="close">
+                    <ion-icon name="close"></ion-icon>
+                </button>
 
                 <div class="notification-data">
                     <div>
-                        <img src="@/assets/logo.png" width="30px" alt="">
+                        <img src="@/assets/img/tmlogo.png" width="30px" alt="">
                     </div>
                     <div class="notification-title">
                         <h4>{{from}}</h4>
@@ -46,8 +48,6 @@ export default {
                     // debugger
                     this.currentMessage = payload;
                     
-                    let message;
-                    message = payload.data.username + ":\n\n" + payload.data.message;
                     this.setNotificationBoxForm(
                         payload.data.shipmentWallNumber,
                         payload.data.username,
@@ -83,13 +83,13 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
     .notification-box {
         position: fixed;
         right: 5px;
         bottom: 10px;
-        width: 30%;
-        height: 117px;
+        width: 400px;
+        min-height: 117px;
         background-color: #fff;
         z-index: 999;
         background: #333;
@@ -130,8 +130,8 @@ export default {
                 text-align: left;
 
                 h4 {
+                    font-size: 1.2rem !important;
                     color: #fff;
-                    margin-bottom: .6rem;
                 }
 
                 p {
