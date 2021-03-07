@@ -16,10 +16,55 @@ try {
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
 
+
+    class CustomPushEvent extends Event {
+        constructor(data) {
+            super('push')
+    
+            Object.assign(this, data)
+            this.custom = true
+        }
+    }
+    
+    /*
+     * Overrides push notification data, to avoid having 'notification' key and firebase blocking
+     * the message handler from being called
+     */
+    self.addEventListener('push', (e) => {
+        // Skip if event is our own custom event
+        if (e.custom) return;
+    
+        // Kep old event data to override
+        let oldData = e.data
+    
+        // Create a new event to dispatch, pull values from notification key and put it in data key, 
+        // and then remove notification key
+        let newEvent = new CustomPushEvent({
+            data: {
+                json() {
+                    let newData = oldData.json()
+                    newData.data = {
+                        ...newData.data,
+                        ...newData.notification
+                    }
+                    delete newData.notification
+                    return newData
+                },
+            },
+            waitUntil: e.waitUntil.bind(e),
+        })
+    
+        // Stop event propagation
+        e.stopImmediatePropagation()
+    
+        // Dispatch the new wrapped event
+        dispatchEvent(newEvent)
+    })
+
     //messaging
     const messaging = firebase.messaging()
 
-    messaging.setBackgroundMessageHandler((payload) => {
+    /*messaging.setBackgroundMessageHandler((payload) => {
         const title = payload.data.username
         let iconPath = ''
 
@@ -29,7 +74,18 @@ try {
         }
 
         return self.registration.showNotification(title, options)
-    })
+    })*/
+
+    messaging.onBackgroundMessage((payload) => {
+        const notificationTitle = payload.data.username;
+        const notificationOptions = {
+            body: payload.data.message,
+            icon: 'public/img/tmlogo.png',
+            data: payload.data
+        };
+        return self.registration.showNotification(notificationTitle,
+            notificationOptions);
+    });
 }catch(error) {
     console.log(error)
 }
