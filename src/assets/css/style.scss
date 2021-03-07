@@ -67,8 +67,7 @@ textarea {
         background-color: #fff;
         box-shadow: 0 0 37px rgb(8 21 66 / 5%);
         border-radius: 3px;
-        width: 100%;
-        max-width: 480px;
+        width: 480px;
         padding: 2rem 2.5rem;
         margin-top: 1.5rem;
         margin-bottom: 1.5rem;
@@ -609,5 +608,37 @@ h3 {
 
     .carousel-cell {
         width: 97%;
+    }
+
+    .new-rest-form {
+        width: 80%;
+
+        &.rest-list {
+            width: 90%;
+        }
+    }
+
+    .page-jumbotron {
+        height: 30vh;
+        background-image: url(../img/login_bg.jpg);
+        background-size: cover;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .account-form {
+        width: 100% !important;
+    }
+
+    .new-rest-form {
+        width: 100%;
+
+        &.rest-list {
+            width: 100%;
+        }
+    }
+
+    .rest-modal-wrapper {
+        width: 90%;
     }
 }

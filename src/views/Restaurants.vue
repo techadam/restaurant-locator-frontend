@@ -10,28 +10,30 @@
                     Restaurants list
                 </h4>
                 
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Address</th>
-                            <th scope="col">Latitude-Longitude</th>
-                            <th scope="col" v-if="token">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr v-for="(rest, index) in restaurants" :key="index">
-                            <th scope="row">{{index + 1}}</th>
-                            <td>{{rest.name}}</td>
-                            <td>{{rest.address}}</td>
-                            <td>{{Number(rest.lat).toFixed(5)}} - {{Number(rest.log).toFixed(5)}}</td>
-                            <td v-if="token">
-                                <button type="button" @click="restaurant = rest" class="btn btn-dark">Edit</button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Address</th>
+                                <th scope="col">Latitude-Longitude</th>
+                                <th scope="col" v-if="token">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="(rest, index) in restaurants" :key="index">
+                                <th scope="row">{{index + 1}}</th>
+                                <td>{{rest.name}}</td>
+                                <td>{{rest.address}}</td>
+                                <td>{{Number(rest.lat).toFixed(5)}} - {{Number(rest.log).toFixed(5)}}</td>
+                                <td v-if="token">
+                                    <button type="button" @click="restaurant = rest" class="btn btn-dark">Edit</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
 
