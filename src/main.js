@@ -10,16 +10,16 @@ Vue.config.productionTip = false;
 
 //Global vars
 Vue.prototype.$axios = axios;
-Vue.prototype.$api = `http://localhost:5000`;
-Vue.prototype.$firebaseMsgApi = `https://fcm.googleapis.com/fcm/send`;
-Vue.prototype.$firebaseKey = "key=AAAAvtge1dE:APA91bFssSdOVcajq7oZzzVg1s7fqV3qmVXhbVnGeSn6NIRXQ0NDr9wGt8ZGpaep7P-SAelqVpuZXcLR-8GAPbxlyHGJu7eD4qOuxGqAEuj-1oAnm-FL5RcENeFQUsANCQ0A7vVqC11i";
+Vue.prototype.$api = process.env.VUE_APP_API;
+Vue.prototype.$firebaseMsgApi = process.env.VUE_APP_FIREBASE_API;
+Vue.prototype.$firebaseKey = process.env.VUE_APP_FIREBASE_KEY;
 
 //Google map
 import * as VueGoogleMaps from 'vue2-google-maps';
  
 Vue.use(VueGoogleMaps, {
   load: {
-    key: 'YOUR_API_KEY',
+    key: process.env.VUE_APP_GOOGLE_MAP_KEY,
     libraries: 'places',
   },
 });
@@ -36,7 +36,7 @@ import VueSocketIO from "vue-socket.io";
 Vue.use(
   new VueSocketIO({
     debug: true,
-    connection: io('http://localhost:5000'), // options object is Optional
+    connection: io(`${process.env.VUE_APP_API}`), // options object is Optional
   })
 );
 
