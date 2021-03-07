@@ -22,6 +22,11 @@
                             </li>
                             <li>
                                 <router-link to="/" class="link-item">
+                                    <ion-icon name="home"></ion-icon> Home
+                                </router-link>
+                            </li>
+                            <li>
+                                <router-link to="/" class="link-item">
                                     <ion-icon name="cart"></ion-icon> Cart
                                 </router-link>
                             </li>
