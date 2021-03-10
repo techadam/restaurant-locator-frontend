@@ -61,6 +61,11 @@
                     <div class="menu-block">
                         <ul v-if="token">
                             <li>
+                                <router-link to="/profile" class="link-item">
+                                    <ion-icon name="person-circle"></ion-icon> Profile
+                                </router-link>
+                            </li>
+                            <li>
                                 <router-link to="/new-restaurant" class="link-item">
                                     <ion-icon name="add-circle"></ion-icon> Add Restaurant
                                 </router-link>

@@ -89,6 +89,57 @@ textarea {
             color: $main-color;
         }
 
+        .social-btn-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+            button {
+                display: flex;
+                margin-left: 1.5rem;
+                height: 40px;
+                width: 40px;
+                border-radius: 50%;
+                justify-content: center;
+                align-items: center;
+                border: none;
+                outline: none;
+                cursor: pointer;
+
+                &.google {
+                    background: tomato;
+
+                    ion-icon {
+                        color: #fff;
+                    }
+                }
+
+                &.facebook {
+                    background: #3b5598;
+
+                    ion-icon {
+                        color: #fff;
+                    }
+                }
+
+                &.apple {
+                    background: #7D7D7D;
+
+                    ion-icon {
+                        color: #fff;
+                    }
+                }
+
+                ion-icon {
+                    font-size: 1.5rem;
+                }
+
+                &:first-child {
+                    margin-left: 0;
+                }
+            }
+        }
+
         /*.form-control {
             background: #efefef;
             border: 1px solid #ccc;
@@ -601,6 +652,51 @@ h3 {
     }
 }
 
+.profile-card {
+    position: relative;
+    top: -6.5rem;
+    width: 600px;
+    max-width: 90%;
+    margin: auto;
+
+    .profile-img-wrapper {
+
+        .profile-img {
+            height: 170px;
+            width: 170px;
+            background-size: cover;
+            background-repeat: no-repeat;
+            border: 8px solid #fff;
+            border-radius: 50%;
+            margin: auto;
+        }
+
+        h3 {
+            margin-top: 1rem !important;
+            margin-bottom: 1rem;
+            font-size: 1.65rem !important; 
+        }
+    }
+
+    .user-info-flex {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .user-info-single {
+            margin-right: 6rem;
+
+            &:last-child {
+                margin-right: 0rem;
+            }
+            
+            span {
+                font-weight: 600;
+            }
+        }
+    }
+}
+
 @media only screen and (max-width: 768px) {
     .hide-sm {
         display: none;
@@ -640,5 +736,14 @@ h3 {
 
     .rest-modal-wrapper {
         width: 90%;
+    }
+
+    .user-info-flex {
+        display: block !important;
+
+        .user-info-single {
+            margin-right: 0rem !important;
+            text-align: center;
+        }
     }
 }

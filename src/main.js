@@ -73,6 +73,10 @@ navigator.serviceWorker.register('firebase-messaging-sw.js', {scope: "firebase-c
 import VueSwal from 'vue-swal';
 Vue.use(VueSwal);
 
+//Filters
+import Vue2Filters from 'vue2-filters'
+Vue.use(Vue2Filters)
+
 
 //Swiper
 import VueAwesomeSwiper from 'vue-awesome-swiper';
